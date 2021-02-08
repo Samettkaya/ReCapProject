@@ -29,7 +29,7 @@ namespace DataAccess.Concrete.EntityFramework
 
                                  CarId = cr.CarId,
                                  CarName = cr.CarName,
-                                 BarandId = br.BrandId,
+                                 BrandId = br.BrandId,
                                  BrandName = br.BrandName,
                                  ColorId = co.ColorId,
                                  ColorName = co.ColorName,

@@ -16,43 +16,68 @@ namespace ConsoleUI
             BrandManager brandManager = new BrandManager(new EfBrandDal());
             ColorManager colorManager = new ColorManager(new EfColorDal());
 
+            //ColorAdd(colorManager);
+            //ColorDelete(colorManager);
+            //BrandAdd(brandManager);
+            //CarAdd(carManager);
+            AllCars(carManager);
 
-            //Console.WriteLine("Brand Id'si 3 olan arabalar: \nId\tColor Name\tBrand Name\tModel Year\tDaily Price\tDescriptions");
-            //foreach (var car in carManager.GetAllByBrandId(3))
-            //{
-            //    Console.WriteLine($"{car.CarId}\t{colorManager.GetById(car.ColorId).ColorName}\t\t{brandManager.GetById(car.BrandId).BrandName}\t\t{car.ModelYear}\t\t{car.DailyPrice}\t\t{car.Descriptions}");
-            //}
-
-            //Console.WriteLine("\n\nColor Id'si 3 olan arabalar: \nId\tColor Name\tBrand Name\tModel Year\tDaily Price\tDescriptions");
-            //foreach (var car in carManager.GetAllByColorId(3))
-            //{
-            //    Console.WriteLine($"{car.CarId}\t{colorManager.GetById(car.ColorId).ColorName}\t\t{brandManager.GetById(car.BrandId).BrandName}\t\t{car.ModelYear}\t\t{car.DailyPrice}\t\t{car.Descriptions}");
-            //}
-
-            //Console.WriteLine("\n\nId'si 3 olan araba: \nId\tColor Name\tBrand Name\tModel Year\tDaily Price\tDescriptions");
-            //Car carById = carManager.GetById(3);
-            //Console.WriteLine($"{carById.CarId}\t{colorManager.GetById(carById.ColorId).ColorName}\t\t{brandManager.GetById(carById.BrandId).BrandName}\t\t{carById.ModelYear}\t\t{carById.DailyPrice}\t\t{carById.Descriptions}");
+        }
 
 
-            //Console.WriteLine("\n\nGünlük fiyat aralığı 100 ile 1000 olan arabalar: \nId\tColor Name\tBrand Name\tModel Year\tDaily Price\tDescriptions");
-            //foreach (var car in carManager.GetByDailyPrice(100, 1000))
-            //{
-            //    Console.WriteLine($"{car.CarId}\t{colorManager.GetById(car.ColorId).ColorName}\t\t{brandManager.GetById(car.BrandId).BrandName}\t\t{car.ModelYear}\t\t{car.DailyPrice}\t\t{car.Descriptions}");
+        private static void CarAdd(CarManager carManager)
+        {
+            carManager.Add(new Car
+            {
+                CarName = "Tesla123",
+                ModelYear = "2021",
+                DailyPrice = 1000,
+                Descriptions = "kayıt",
+                BrandId = 1002,
+                ColorId = 5
 
-            //carManager.Add(new Car { CarName = "Porsche Panamera", BrandId = 6, ColorId = 2, DailyPrice = 400, ModelYear = "2019", Descriptions = "Otomatik Dizel Aile Arabası" });
-            //brandManager.Add(new Brand { BrandName = "Porsche" });
+            });
+        }
 
+        private static void BrandAdd(BrandManager brandManager)
+        {
+            brandManager.Add(new Brand
+            {
 
+                BrandName = "Tesla"
+
+            });
+        }
+
+        private static void AllCars(CarManager carManager)
+        {
             Console.WriteLine("\nTüm arabalar:\n\nId\tCar Name\tBrand Name\tColor Name\tModel Year\tDaily Price\tDescriptions");
-            
+
             foreach (var car in carManager.GetCarDetails())
             {
                 Console.WriteLine($"{car.CarId}\t{car.CarName}\t{car.BrandName}\t\t{car.ColorName}\t\t{car.ModelYear}\t\t{car.DailyPrice}\t\t{car.Descriptions}");
             }
-            Console.WriteLine("\n\n");
-           
-
-
         }
+
+        private static void ColorDelete(ColorManager colorManager)
+        {
+            colorManager.Delete(new Color
+            {
+
+                ColorId = 1003
+
+            });
+        }
+
+        private static void ColorAdd(ColorManager colorManager)
+        {
+            colorManager.Add(new Color
+            {
+
+                ColorName = "turuncu"
+
+            });
+        }
+
     }
 }
