@@ -20,20 +20,24 @@ namespace ConsoleUI
             //ColorDelete(colorManager);
             //BrandAdd(brandManager);
             //CarAdd(carManager);
+
             AllCars(carManager);
+
+
 
         }
 
+      
 
         private static void CarAdd(CarManager carManager)
         {
             carManager.Add(new Car
             {
-                CarName = "Tesla123",
-                ModelYear = "2021",
-                DailyPrice = 1000,
-                Descriptions = "kayıt",
-                BrandId = 1002,
+                CarName = "Jetta",
+                ModelYear = "2017",
+                DailyPrice = 300,
+                Descriptions = "Manuel Dizel",
+                BrandId = 5,
                 ColorId = 5
 
             });
@@ -44,19 +48,28 @@ namespace ConsoleUI
             brandManager.Add(new Brand
             {
 
-                BrandName = "Tesla"
+                BrandName = "Audi"
 
             });
         }
 
         private static void AllCars(CarManager carManager)
         {
-            Console.WriteLine("\nTüm arabalar:\n\nId\tCar Name\tBrand Name\tColor Name\tModel Year\tDaily Price\tDescriptions");
-
-            foreach (var car in carManager.GetCarDetails())
+            var result = carManager.GetCarDetails();
+            if (result.Success)
             {
-                Console.WriteLine($"{car.CarId}\t{car.CarName}\t{car.BrandName}\t\t{car.ColorName}\t\t{car.ModelYear}\t\t{car.DailyPrice}\t\t{car.Descriptions}");
+                Console.WriteLine("\nTüm arabalar:\n\nId\tCar Name\tBrand Name\tColor Name\tModel Year\tDaily Price\tDescriptions");
+                foreach (var car in result.Data)
+                {      
+                    Console.WriteLine($"{car.CarId}\t{car.CarName}\t{car.BrandName}\t\t{car.ColorName}\t\t{car.ModelYear}\t\t{car.DailyPrice}\t\t{car.Descriptions}");
+                }
             }
+            else
+            {
+                Console.WriteLine(result.Message);
+            }
+
+           
         }
 
         private static void ColorDelete(ColorManager colorManager)
@@ -79,5 +92,10 @@ namespace ConsoleUI
             });
         }
 
+   
+
     }
+  
+  
+       
 }
