@@ -1,5 +1,6 @@
 ﻿CREATE TABLE Cars(
 	CarID int PRIMARY KEY IDENTITY(1,1),
+	CarName nvarchar(50),
 	BrandID int,
 	ColorID int,
 	ModelYear nvarchar(25),
@@ -29,13 +30,22 @@ VALUES
 
 INSERT INTO Colors(ColorName)
 VALUES
-	('Beyaz'),
 	('Siyah'),
-	('Mavi');
+	('Gri'),
+	('Kırmızı'),
+	('Sarı'),
+	('Beyaz'),
+	('Mavi'),
+	('Cyan'),
+	('Gümüş');
 
 
 INSERT INTO Brands(BrandName)
 VALUES
+	('Bmw'),
+	('Renault'),
 	('Mercedes'),
-	('BMW'),
-	('Renault');
+	('Toyota'),
+	('Vosvogen');
+	
+	
