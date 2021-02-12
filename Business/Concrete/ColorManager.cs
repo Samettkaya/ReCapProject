@@ -13,10 +13,12 @@ namespace Business.Concrete
     public class ColorManager : IColorService
     {
         IColorDal _colorDal;
+
         public ColorManager(IColorDal brandDal)
         {
             _colorDal = brandDal;
         }
+
         public IResult Add(Color entity)
         {
             _colorDal.Add(entity);
