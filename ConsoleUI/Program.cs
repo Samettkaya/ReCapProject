@@ -15,45 +15,92 @@ namespace ConsoleUI
             CarManager carManager = new CarManager(new EfCarDal());
             BrandManager brandManager = new BrandManager(new EfBrandDal());
             ColorManager colorManager = new ColorManager(new EfColorDal());
-
-            //ColorAdd(colorManager);
-            //ColorDelete(colorManager);
-            //BrandAdd(brandManager);
-            //CarAdd(carManager);
-
-            AllCars(carManager);
+            UserManager userManager = new UserManager(new EfUserDal());
+            CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
 
 
+            //ColorTest(colorManager);
+            //BrandTest(brandManager);
+            CarTest(carManager);
+            UserTest(userManager);
+            CustomerTest(customerManager);
 
+            RentalTest(rentalManager);
         }
 
-      
-
-        private static void CarAdd(CarManager carManager)
+        private static void RentalTest(RentalManager rentalManager)
         {
-            carManager.Add(new Car
-            {
-                CarName = "Jetta",
-                ModelYear = "2017",
-                DailyPrice = 300,
-                Descriptions = "Manuel Dizel",
-                BrandId = 5,
-                ColorId = 5
-
-            });
-        }
-
-        private static void BrandAdd(BrandManager brandManager)
-        {
-            brandManager.Add(new Brand
+            var result = rentalManager.GetAll();
+            if (result.Success)
             {
 
-                BrandName = "Audi"
+                Console.WriteLine("\nKiralık Arabalar:\n\nId\tCar Id\tCustomer Id\tRent Date\t\tReturn Date");
+                foreach (var rental in result.Data)
+                {
+                    if (rental.ReturnDate != null)
+                    {
+                        Console.WriteLine($"{rental.RentalId}\t{rental.CarId}\t{rental.CustomerId}\t\t{rental.RentDate}\t{rental.ReturnDate}");
 
-            });
+                    }
+                    else
+                    {
+                        Console.WriteLine(result.Message);
+                    }
+                }
+
+            }
+            else
+            {
+                Console.WriteLine(result.Message);
+            }
+
+
         }
 
-        private static void AllCars(CarManager carManager)
+        private static void CustomerTest(CustomerManager customerManager)
+        {
+            var result = customerManager.GetAll();
+
+            Console.WriteLine("\nAraba Kiralayan Şirketler:\n\n Company Name");
+            foreach (var customer in result.Data)
+            {
+                Console.WriteLine($"{customer.CompanyName}");
+
+            }
+
+            //customerManager.Add(new Customer{UserId=1005,CompanyName="Ptt"});
+            //customerManager.Delete(new Customer {CustomerId=1005 });
+        }
+
+        private static void UserTest(UserManager userManager)
+        {
+            var result = userManager.GetAll();
+
+            Console.WriteLine("\nTüm Kulanıcılar:\n\nId\tFirst Name\tLast Name\tE-mail");
+            foreach (var user in result.Data)
+            {
+                Console.WriteLine($"{user.UserId}\t{user.FirstName}\t\t{user.LastName}\t\t{user.Email}");
+
+            }
+
+            //userManager.Add(new User { FirstName="Kayahan",LastName="Haskaya",Email="kayahan45@gmail.com",Password="123kayahan"});
+            //userManager.Update(new User {UserId=1005,Password="123haskaya" });
+            //userManager.Delete(new User { UserId = 1005 });
+        }
+
+
+
+
+        private static void BrandTest(BrandManager brandManager)
+        {
+            //brandManager.Add(new Brand { BrandName = "Audi" });
+            //brandManager.Update(new Brand {BrandId=2002, BrandName="Audi"});
+            //brandManager.Delete(new Brand { BrandId=2002});
+        }
+
+       
+        private static void CarTest(CarManager carManager)
         {
             var result = carManager.GetCarDetails();
             if (result.Success)
@@ -63,34 +110,36 @@ namespace ConsoleUI
                 {      
                     Console.WriteLine($"{car.CarId}\t{car.CarName}\t{car.BrandName}\t\t{car.ColorName}\t\t{car.ModelYear}\t\t{car.DailyPrice}\t\t{car.Descriptions}");
                 }
+               
             }
             else
             {
                 Console.WriteLine(result.Message);
             }
-
-           
+            //carManager.Add(new Car{CarName = "Jetta",ModelYear = "2017",DailyPrice = 300,Descriptions = "Manuel Dizel",BrandId = 5,ColorId = 5});
+            //carManager.Add(new Car() { CarName = "Tesla 12", BrandId = 6, ColorId = 4, ModelYear = "2010", DailyPrice = 400, Descriptions = "Güzel Araba" });
+            //carManager.Delete(new Car() { CarId = 2006, CarName = "Tesla 12", BrandId = 6, ColorId = 4, ModelYear = "2010", DailyPrice = 400, Descriptions = "Güzel Araba" });
+            //carManager.Update(new Car() { CarId = 2006, CarName = "Tesla 12", BrandId = 6, ColorId = 4, ModelYear = "2010", DailyPrice = 400, Descriptions = "Güzel Araba" });
         }
 
-        private static void ColorDelete(ColorManager colorManager)
+        private static void ColorTest(ColorManager colorManager)
         {
-            colorManager.Delete(new Color
+
+            //colorManager.Delete(new Color{ ColorId = 1003});
+
+            //colorManager.Update(new Color() { ColorId = 7, ColorName = "Silver" });
+
+            //colorManager.Add(new Color { ColorName = "turuncu" });
+
+            var result = colorManager.GetAll();
+            Console.WriteLine("Tüm Renkler \n Id \t Name");
+            foreach (var color in result.Data)
             {
-
-                ColorId = 1003
-
-            });
+                Console.WriteLine($"{color.ColorId  } \t {color.ColorName}");
+            }
         }
 
-        private static void ColorAdd(ColorManager colorManager)
-        {
-            colorManager.Add(new Color
-            {
-
-                ColorName = "turuncu"
-
-            });
-        }
+      
 
    
 
