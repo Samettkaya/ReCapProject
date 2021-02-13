@@ -21,7 +21,7 @@ namespace Business.Constants
         public static string BrandListed= "Marka başarıyla listelendi.";
         public static string ColorAdded = "Renk başarıyla eklendi.";
         public static string ColorDelete = "Renk başarıyla silindi.";
-        public static string ColorListed= "Renkler başarıyla gistelendi.";
+        public static string ColorListed= "Renkler başarıyla listelendi.";
         public static string ColorUpdated= "Renk başarıyla güncellendi";
         public static string UsingAdded ="Kullanıcı Başarıyla eklendi.";
         public static string UserUpdate="Kullıcı başarıyla güncelendi.";
