@@ -24,12 +24,12 @@ namespace Business.Concrete
             if (brand.BrandName.Length > 2)
             {
                 _brandDal.Add(brand);
-                //Console.WriteLine("Marka başarıyla eklendi.");
+                
                 return new SuccessResult(Messages.BrandAdded);
             }
             else
             {
-                //Console.WriteLine($"Marka isminin uzunluğunu 2 karakterden fazla giriniz. Girdiğiniz marka ismi : {brand.BrandName}");
+                
                 return new ErrorResult(Messages.BrandNameInvalid);
             }
         }
@@ -37,7 +37,7 @@ namespace Business.Concrete
         public IResult Delete(Brand brand)
         {
             _brandDal.Delete(brand);
-            //Console.WriteLine("Marka başarıyla silindi.");
+           
             return new SuccessResult(Messages.BrandDelete);
 
         }
@@ -59,12 +59,12 @@ namespace Business.Concrete
             if (brand.BrandName.Length >= 2)
             {
                 _brandDal.Update(brand);
-                //Console.WriteLine("Marka başarıyla Güncellendi.");
+               
                 return new SuccessResult(Messages.BrandUpdate);
             }
             else
             {
-                //Console.WriteLine($"Marka isminin uzunluğunu 2 karakterden fazla giriniz. Girdiğiniz marka ismi : {brand.BrandName}");
+               
                 return new ErrorResult(Messages.BrandNameInvalid);
             }
 

@@ -27,7 +27,7 @@ namespace Business.Concrete
         public IResult Delete(User user)
         {
             _userDal.Delete(user);
-            return new SuccessResult(Messages.UsingAdded);
+            return new SuccessResult(Messages.UsingDelete);
         }
 
         public IDataResult<List<User>> GetAll()

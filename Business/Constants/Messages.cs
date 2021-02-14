@@ -25,9 +25,11 @@ namespace Business.Constants
         public static string ColorUpdated= "Renk başarıyla güncellendi";
         public static string UsingAdded ="Kullanıcı Başarıyla eklendi.";
         public static string UserUpdate="Kullıcı başarıyla güncelendi.";
+        public static string UsingDelete = "Kişi Başarıyla Silindi";
         public static string RentalAddedError= "Aracın kiraya verilebilmesi için önce teslim edilmesi gerekir.";
         public static string RentalAdded= "Kiralama işlemi başarılı";
         public static string RentalDelete="Kiralama işlemi başarıyla silindi";
         public static string RentalUpdate="Kiralama işlemi başarıyla güncellendi";
+        
     }
 }
