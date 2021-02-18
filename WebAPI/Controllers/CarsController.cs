@@ -115,7 +115,7 @@ namespace WebAPI.Controllers
             return BadRequest(result.Message);
         }
 
-        [HttpPut("updated")]
+        [HttpPost("updated")]
         public IActionResult Update(Car car)
         {
             var result = _carService.Update(car);
@@ -127,7 +127,7 @@ namespace WebAPI.Controllers
 
         }
 
-        [HttpDelete("delete")]
+        [HttpPost("delete")]
         public IActionResult Delete(Car car)
         {
             var result = _carService.Delete(car);

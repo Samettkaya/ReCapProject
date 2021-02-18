@@ -30,6 +30,9 @@ namespace Business.Concrete
             }
             _rentalDal.Add(rental);
             return new SuccessResult(result.Message);
+
+
+            
         }
 
         public IResult CheckReturnDate(int carId)
