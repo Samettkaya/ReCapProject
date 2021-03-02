@@ -1,4 +1,5 @@
 ﻿using Core.Utilities.Results.Abstract;
+using Microsoft.AspNetCore.Http;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
@@ -8,10 +9,12 @@ namespace Business.Abstract
 {
     public interface ICarImageService
     {
-        IResult Add(CarImage carImage);
-        IResult Update(CarImage carImage);
+        IResult Add(IFormFile file,CarImage carImage);
+        IResult Update(IFormFile file,CarImage carImage);
         IResult Delete(CarImage carImage);
         IDataResult<List<CarImage>> GetAll();
-        IDataResult<CarImage> GetById(int carImageId);
+        IDataResult<CarImage> GetById(int id);
+        IDataResult<List<CarImage>> GetAllByCarId(int carId);
+
     }
 }

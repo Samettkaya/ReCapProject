@@ -46,12 +46,14 @@ namespace Business.Constants
         public static string RentalListed = "Kiralanan arabalar başarıyla listelendi";
 
         // CarImage Messages
-        public static string CarImageAdded="Resim başarıyla eklendi";
-        public static string CarImageLists = "Resimler başarıyla listelendi";
-        public static string CarImageList = "Resim başarıyla listelendi ";
-        public static string CarImageDelete="Resim başarıyla silindi";
-        public static string CarImageUpdated="Resim başarıyla güncellendi";
+        //CarImage
+        public static string CarImageAdded = "Araba Resmi Eklendi.";
+        public static string CarImageUpdate = "Araba Resmi Güncellendi";
+        public static string CarImageDelete = "Araba Resmi Silindi";
+        public static string CarImageListed = "Araba Resmi Listelendi";
+        public static string CarImageAddingLimit = "Araba sisteminde en fazla 5 resim eklenebilir";
+        public static string IncorrectFileExtension = " Araba  resmi dosya uzantısı  yanlıştır";
+        public static string[] ValidImageFileTypes = { ".JPG", ".JPEG", ".PNG", ".TIF", ".TIFF", ".GIF", ".BMP", ".ICO" };
 
-      
     }
 }

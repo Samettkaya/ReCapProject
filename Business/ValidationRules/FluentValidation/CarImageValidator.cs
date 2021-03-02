@@ -11,6 +11,8 @@ namespace Business.ValidationRules.FluentValidation
         public CarImageValidator()
         {
             RuleFor(ı => ı.ImagePath).GreaterThan("").WithMessage("Resim alanı boş bırakılamaz");
+            RuleFor(c => c.CarId).NotNull();
+            RuleFor(c => c.ImageId).NotNull();
         }
     }
 }
