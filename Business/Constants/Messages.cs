@@ -1,6 +1,7 @@
 ﻿using Entities.Concrete;
 using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace Business.Constants
@@ -55,5 +56,6 @@ namespace Business.Constants
         public static string IncorrectFileExtension = " Araba  resmi dosya uzantısı  yanlıştır";
         public static string[] ValidImageFileTypes = { ".JPG", ".JPEG", ".PNG", ".TIF", ".TIFF", ".GIF", ".BMP", ".ICO" };
 
+        public static string AuthorizationDenied ="Yetkiniz yok.";
     }
 }
