@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
 using core.Entities.Concrete;
+using Core.Aspects.Autofac.Cashing;
+using Core.Aspects.Autofac.Transaction;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
 using Core.Utilities.Security.Hashing;
@@ -22,6 +24,7 @@ namespace Business.Concrete
             _tokenHelper = tokenHelper;
         }
 
+        [CacheAspect]
         public IDataResult<User> Register(UserForRegisterDto userForRegisterDto, string password)
         {
             byte[] passwordHash, passwordSalt;
@@ -39,6 +42,8 @@ namespace Business.Concrete
             return new SuccessDataResult<User>(user, "Kayıt oldu");
         }
 
+        [TransactionScopeAspect]
+        [CacheRemoveAspect("IAuthService.Get")]
         public IDataResult<User> Login(UserForLoginDto userForLoginDto)
         {
             var userToCheck = _userService.GetByMail(userForLoginDto.Email);
@@ -64,6 +69,7 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
+        [CacheAspect]
         public IDataResult<AccessToken> CreateAccessToken(User user)
         {
             var claims = _userService.GetClaims(user);
