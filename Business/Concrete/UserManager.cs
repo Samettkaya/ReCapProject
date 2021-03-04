@@ -44,6 +44,7 @@ namespace Business.Concrete
 
         }
 
+        [ValidationAspect(typeof(UserValidator))]
         public IResult Update(User user)
         {
             _userDal.Update(user);

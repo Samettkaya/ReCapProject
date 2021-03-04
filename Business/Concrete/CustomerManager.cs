@@ -47,6 +47,7 @@ namespace Business.Concrete
              
         }
 
+        [ValidationAspect(typeof(CustomerValidator))]
         public IResult Update(Customer customer)
         {
            
