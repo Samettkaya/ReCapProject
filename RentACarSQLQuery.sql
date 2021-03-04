@@ -51,6 +51,14 @@ CREATE TABLE [dbo].[Rentals] (
     FOREIGN KEY ([CustomerId]) REFERENCES [dbo].[Customers] ([CustomerId])
 );
 
+CREATE TABLE [dbo].[CarImages] (
+    [ImageId]   INT           IDENTITY (1, 1) NOT NULL,
+    [CarId]     INT           NOT NULL,
+    [ImagePath] VARCHAR (MAX) NOT NULL,
+    [Date]      DATE          NOT NULL,
+    CONSTRAINT [PK_CarImages] PRIMARY KEY CLUSTERED ([ImageId] ASC),
+    CONSTRAINT [FK_CarImages_Cars] FOREIGN KEY ([CarId]) REFERENCES [dbo].[Cars] ([CarID]) ON DELETE CASCADE
+);
 
 
 INSERT INTO Cars(BrandID,ColorID,ModelYear,DailyPrice,Descriptions)
@@ -102,3 +110,11 @@ INSERT INTO Users(FirstName,LastName,Email,Password) VALUES
 	('Can','Güneri','cankuneri34@gmail.com','123Guneri'),
 	('Berkant','Yılmaz','berkantyilmaz3484@gmail.com','123berkant');
 
+CREATE TABLE [dbo].[CarImages] (
+    [ImageId]   INT           IDENTITY (1, 1) NOT NULL,
+    [CarId]     INT           NOT NULL,
+    [ImagePath] VARCHAR (MAX) NOT NULL,
+    [Date]      DATE          NOT NULL,
+    CONSTRAINT [PK_CarImages] PRIMARY KEY CLUSTERED ([ImageId] ASC),
+    CONSTRAINT [FK_CarImages_Cars] FOREIGN KEY ([CarId]) REFERENCES [dbo].[Cars] ([CarID]) ON DELETE CASCADE
+);
