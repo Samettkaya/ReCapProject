@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Core.Aspects.Autofac.Cashing;
+using Business.BusinessAspects.Autofac;
 
 namespace Business.Concrete
 {
@@ -23,6 +24,8 @@ namespace Business.Concrete
         {
             _carDal = carDal;
         }
+
+        [SecuredOperation("car.add")]
         [CacheRemoveAspect("Get")]
         [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car car)

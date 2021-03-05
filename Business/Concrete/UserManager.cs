@@ -20,7 +20,7 @@ namespace Business.Concrete
             _userDal = userDal;
         }
 
-        [ValidationAspect(typeof(UserValidator))]
+        //[ValidationAspect(typeof(UserValidator))]
         public IResult Add(User user)
         {
             _userDal.Add(user);
@@ -50,10 +50,12 @@ namespace Business.Concrete
             _userDal.Update(user);
             return new SuccessResult(Messages.UserUpdate);
         }
+
         public User GetByMail(string email)
         {
             return _userDal.Get(u => u.Email == email);
         }
+
         public List<OperationClaim> GetClaims(User user)
         {
             return _userDal.GetClaims(user);

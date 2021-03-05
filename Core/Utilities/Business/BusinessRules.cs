@@ -20,9 +20,6 @@ namespace Core.Utilities.BusinessRules
             return null;
         }
 
-        public static IResult Run(object checkIfImageLimitExpired)
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }
