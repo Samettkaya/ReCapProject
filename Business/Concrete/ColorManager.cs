@@ -21,7 +21,8 @@ namespace Business.Concrete
         {
             _colorDal = colorDal;
         }
-        [SecuredOperation("color.add")]
+
+        [SecuredOperation("color.add,admin")]
         [ValidationAspect(typeof(ColorValidator))]
         public IResult Add(Color color)
         {

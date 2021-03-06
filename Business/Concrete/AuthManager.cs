@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
 using core.Entities.Concrete;
 using Core.Aspects.Autofac.Cashing;
 using Core.Aspects.Autofac.Transaction;
@@ -27,7 +28,7 @@ namespace Business.Concrete
         }
 
         [CacheAspect]
-        [ValidationAspect(typeof(IAuthService))]
+        [ValidationAspect(typeof(AuthValidator))]
         public IDataResult<User> Register(UserForRegisterDto userForRegisterDto, string password)
         {
             byte[] passwordHash, passwordSalt;
