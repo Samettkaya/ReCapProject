@@ -25,6 +25,7 @@ namespace WebAPI.Controllers
 
         public IActionResult GetAll()
         {
+            Thread.Sleep(millisecondsTimeout: 5000);
             var result = _customerService.GetAll();
             if(result.Success)
             {
@@ -37,12 +38,23 @@ namespace WebAPI.Controllers
 
         public IActionResult GeyById(int customerId)
         {
+            Thread.Sleep(millisecondsTimeout: 5000);
             var result = _customerService.GeyById(customerId);
             if (result.Success)
             {
                 return Ok(result.Data);
             }
             return BadRequest(result.Message);
+        }
+
+        [HttpGet("getcustomerdetails")]
+        public ActionResult GetCustomerDetails()
+        {
+            Thread.Sleep(millisecondsTimeout: 5000);
+            var result = _customerService.GetCustomerDetails();
+            if (result.Success)
+                return Ok(result);
+            return BadRequest(result);
         }
 
         [HttpPost("add")]

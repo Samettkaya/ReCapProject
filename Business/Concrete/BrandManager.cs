@@ -21,8 +21,8 @@ namespace Business.Concrete
         {
             _brandDal = brandDal;
         }
-
-        [SecuredOperation("brand")]
+        
+        //[SecuredOperation("brand.add,admin")]
         [ValidationAspect(typeof(BrandValidator))]
 
         public IResult Add(Brand brand)
@@ -43,7 +43,7 @@ namespace Business.Concrete
 
         }
 
-        [SecuredOperation("brand")]
+        //[SecuredOperation("brand.add,admin")]
         public IDataResult<List<Brand>> GetAll()
         {
             

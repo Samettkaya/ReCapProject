@@ -59,6 +59,15 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll(),Messages.RentalListed);
         }
 
+        public IDataResult<List<RentalDetailDto>> GetAllRentalDetailsDto()
+        {
+            List<RentalDetailDto> rentalDetailDtos = _rentalDal.GetRentalDetails();
+            if (rentalDetailDtos.Count > 0)
+                return new SuccessDataResult<List<RentalDetailDto>>(rentalDetailDtos, Messages.GetSuccessRentalMessage);
+            else
+                return new ErrorDataResult<List<RentalDetailDto>>(Messages.GetErrorRentalMessage);
+        }
+         
         public IDataResult<List<RentalDetailDto>> GetRentalDetailsDto(int carId)
         {
             return new SuccessDataResult<List<RentalDetailDto>>(_rentalDal.GetRentalDetails(r => r.CarId == carId));

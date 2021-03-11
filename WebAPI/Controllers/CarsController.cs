@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace WebAPI.Controllers
@@ -25,47 +26,51 @@ namespace WebAPI.Controllers
 
         public IActionResult GetAll()
         {
+            Thread.Sleep(millisecondsTimeout: 5000);
             var result = _carService.GetAll();
             if (result.Success)
             {
-                return Ok(result.Data);
+                return Ok(result);
             }
-            return BadRequest(result.Message);
+            return BadRequest(result);
         }
         [HttpGet("getbyıd")]
 
         public IActionResult GetById(int carId)
         {
+            Thread.Sleep(millisecondsTimeout: 5000);
             var result = _carService.GetById(carId);
             if (result.Success)
             {
-                return Ok(result.Data);
+                return Ok(result);
             }
-            return BadRequest(result.Message);
+            return BadRequest(result);
         }
 
         [HttpGet("getcardto")]
 
         public IActionResult GetCarDetails()
         {
+            Thread.Sleep(millisecondsTimeout: 5000);
             var result = _carService.GetCarDetails();
             if (result.Success)
             {
-                return Ok(result.Data);
+                return Ok(result);
             }
-            return BadRequest(result.Message);
+            return BadRequest(result);
         }
 
         [HttpGet("getallcolorıd")]
 
         public IActionResult GetAllByColorId(int colorId)
         {
+            Thread.Sleep(millisecondsTimeout: 5000);
             var result = _carService.GetAllByColorId(colorId);
             if (result.Success)
             {
-                return Ok(result.Data);
+                return Ok(result);
             }
-            return BadRequest(result.Message);
+            return BadRequest(result);
         }
 
         [HttpGet("getallbrandıd")]
@@ -75,9 +80,9 @@ namespace WebAPI.Controllers
             var result = _carService.GetAllByBrandId(brandId);
             if (result.Success)
             {
-                return Ok(result.Data);
+                return Ok(result);
             }
-            return BadRequest(result.Message);
+            return BadRequest(result);
         }
 
         [HttpGet("getallprice")]
@@ -87,9 +92,9 @@ namespace WebAPI.Controllers
             var result = _carService.GetByDailyPrice(min,max);
             if (result.Success)
             {
-                return Ok(result.Data);
+                return Ok(result);
             }
-            return BadRequest(result.Message);
+            return BadRequest(result);
         }
 
         [HttpGet("getallyear")]
@@ -99,9 +104,9 @@ namespace WebAPI.Controllers
             var result = _carService.GetByModelYear(year);
             if (result.Success)
             {
-                return Ok(result.Data);
+                return Ok(result);
             }
-            return BadRequest(result.Message);
+            return BadRequest(result);
         }
 
         [HttpPost("add")]
@@ -110,9 +115,9 @@ namespace WebAPI.Controllers
             var result = _carService.Add(car);
             if (result.Success)
             {
-                return Ok(result.Message);
+                return Ok(result);
             }
-            return BadRequest(result.Message);
+            return BadRequest(result);
         }
 
         [HttpPost("updated")]
@@ -121,9 +126,9 @@ namespace WebAPI.Controllers
             var result = _carService.Update(car);
             if (result.Success)
             {
-                return Ok(result.Message);
+                return Ok(result);
             }
-            return BadRequest(result.Message);
+            return BadRequest(result);
 
         }
 
@@ -133,9 +138,9 @@ namespace WebAPI.Controllers
             var result = _carService.Delete(car);
             if (result.Success)
             {
-                return Ok(result.Message);
+                return Ok(result);
             }
-            return BadRequest(result.Message);
+            return BadRequest(result);
         }
 
     }

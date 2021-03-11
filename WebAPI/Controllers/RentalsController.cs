@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace WebAPI.Controllers
@@ -26,6 +27,7 @@ namespace WebAPI.Controllers
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
+            Thread.Sleep(millisecondsTimeout: 5000);
             var result = _rentalService.GetAll();
             if (result.Success)
             {
@@ -37,12 +39,23 @@ namespace WebAPI.Controllers
         [HttpGet("getrentaldto")]
         public IActionResult GetRentalDetailsDto(int carId)
         {
+            Thread.Sleep(millisecondsTimeout: 5000);
             var result = _rentalService.GetRentalDetailsDto(carId);
             if (result.Success)
             {
                 return Ok(result.Data);
             }
             return BadRequest(result.Message);
+        }
+
+        [HttpGet("getallrentaldto")]
+        public ActionResult GetAllDeliveredRentalDetails()
+        {
+            Thread.Sleep(millisecondsTimeout: 5000);
+            var result = _rentalService.GetAllRentalDetailsDto();
+            if (result.Success)
+                return Ok(result);
+            return BadRequest(result);
         }
 
 

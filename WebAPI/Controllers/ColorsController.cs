@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace WebAPI.Controllers
@@ -24,24 +25,26 @@ namespace WebAPI.Controllers
 
         public IActionResult GetAll()
         {
+            Thread.Sleep(millisecondsTimeout: 5000);
             var result = _colorService.GetAll();
             if (result.Success)
             {
-                return Ok(result.Data);
+                return Ok(result);
             }
-            return BadRequest(result.Message);
+            return BadRequest(result);
         }
 
         [HttpGet("getbyıd")]
 
         public IActionResult GetById(int colorId)
         {
+            Thread.Sleep(millisecondsTimeout: 5000);
             var result = _colorService.GetById(colorId);
             if (result.Success)
             {
-                return Ok(result.Data);
+                return Ok(result);
             }
-            return BadRequest(result.Message);
+            return BadRequest(result);
         }
 
 
