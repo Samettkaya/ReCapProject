@@ -106,7 +106,7 @@ namespace ConsoleUI
                 Console.WriteLine("\nTüm arabalar:\n\nId\tCar Name\tBrand Name\tColor Name\tModel Year\tDaily Price\tDescriptions");
                 foreach (var car in result.Data)
                 {      
-                    Console.WriteLine($"{car.CarId}\t{car.CarName}\t{car.BrandName}\t\t{car.ColorName}\t\t{car.ModelYear}\t\t{car.DailyPrice}\t\t{car.Descriptions}");
+                    Console.WriteLine($"{car.CarId}\t{car.CarName}\t{car.BrandName}\t\t{car.ColorName}\t\t{car.ModelYear}\t\t{car.DailyPrice}\t\t{car.Description}");
                 }
                
             }

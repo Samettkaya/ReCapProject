@@ -34,7 +34,7 @@ namespace DataAccess.Concrete.EntityFramework
                          ReturnDate = rental.ReturnDate,
                          RentalId = rental.RentalId,
                          BrandName = brand.BrandName,
-                         CarDesctiption = car.Descriptions,
+                         CarDesctiption = car.Description,
                          ColorName = color.ColorName,
                          CompanyName = customer.CompanyName,
                          DailyPrice = car.DailyPrice,

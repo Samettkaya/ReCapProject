@@ -33,7 +33,7 @@ namespace DataAccess.Concrete.EntityFramework
                                  ColorName = co.ColorName,
                                  ModelYear = cr.ModelYear,
                                  DailyPrice = cr.DailyPrice,
-                                 Descriptions = cr.Descriptions
+                                 Description = cr.Description
 
                              };
 
