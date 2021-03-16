@@ -15,15 +15,18 @@ namespace DataAccess.Concrete.EntityFramework
     {
       
 
-        public List<CarDetailDto> GetCarDetails()
+        public List<CarDetailDto> GetCarDetails(Expression<Func<Car, bool>> filter = null)
         {
             using (Context context = new Context())
             {
-                var result = from cr in context.Cars
+                var result = from cr in context.Cars.Where(filter)
                              join br in context.Brands
                              on cr.BrandId equals br.BrandId
                              join co in context.Colors
                              on cr.ColorId equals co.ColorId
+                             join im in context.CarImages
+                             on cr.CarId  equals im.CarId
+
                              select new CarDetailDto
                              {
 
@@ -33,7 +36,10 @@ namespace DataAccess.Concrete.EntityFramework
                                  ColorName = co.ColorName,
                                  ModelYear = cr.ModelYear,
                                  DailyPrice = cr.DailyPrice,
-                                 Description = cr.Description
+                                 Description = cr.Description,
+                                 ImagePath = im.ImagePath,
+                                 Date = im.Date
+
 
                              };
 

@@ -40,7 +40,8 @@ namespace DataAccess.Concrete.EntityFramework
                          DailyPrice = car.DailyPrice,
                          FirstName = user.FirstName,
                          LastName = user.LastName,
-                         ModelYear = car.ModelYear
+                         ModelYear = car.ModelYear,
+                         CarName=car.CarName
                      };
 
                 return result.ToList();
