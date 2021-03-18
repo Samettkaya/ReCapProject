@@ -69,5 +69,6 @@ namespace Business.Constants
 
         public static List<RentalDetailDto> GetErrorRentalMessage { get; internal set; }
         public static string GetSuccessRentalMessage { get; internal set; }
+        public static string GetErrorCarMessage = "Araç bilgisi / bilgileri getirilemedi.";
     }
 }

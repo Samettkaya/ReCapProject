@@ -13,6 +13,8 @@ using System.Collections.Generic;
 using System.Text;
 using Core.Aspects.Autofac.Cashing;
 using Business.BusinessAspects.Autofac;
+using System.Linq.Expressions;
+using System.Reflection;
 
 namespace Business.Concrete
 {
@@ -35,6 +37,17 @@ namespace Business.Concrete
          
         }
 
+        public IResult AddTransactionalTest(Car car)
+        {
+            Add(car);
+            if (car.CarName.Length < 2)
+            {
+                throw new Exception("");
+            }
+            Add(car);
+            return null;
+        }
+
         public IResult Delete(Car car)
         {
             _carDal.Delete(car);
@@ -52,21 +65,9 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(),Messages.CarListed);
         }
 
-        public IDataResult<List<Car>> GetAllByBrandId(int brandId)
-        {
-            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.BrandId == brandId));
-        }
+      
 
-        public IDataResult<List<Car>> GetAllByColorId(int colorId)
-        {
-            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.ColorId == colorId));
-        }
-
-        public IDataResult<List<CarDetailDto>> GetAllCarDetails()
-        {
-            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails());
-        }
-
+   
         public IDataResult<List<Car>> GetByDailyPrice(decimal min, decimal max)
         {
             return new SuccessDataResult<List<Car>> (_carDal.GetAll(c => c.DailyPrice >= min && c.DailyPrice <= max));
@@ -82,30 +83,70 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.ModelYear.Contains(year) == true));
         }
 
-        public IDataResult<List<CarDetailDto>> GetCarDetails()
-        {
-            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails());
-        }
-
-        public IDataResult<List<CarDetailDto>> GetCarDetails(int carId)
+        public IDataResult<List<CarDetailDto>> GetCarDetail(int carId)
         {
             return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(c => c.CarId == carId));
         }
 
-        public IDataResult<List<CarDetailDto>> GetCarsDetails(int colorId, int brandId)
+        public IDataResult<List<CarDetailDto>> GetCarDetails(Expression<Func<Car, bool>> filter = null)
         {
-            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(c => c.BrandId == brandId && c.ColorId == colorId));
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(filter));
         }
 
-        public IDataResult<List<CarDetailDto>> GetCarsDetailsByBrand(int brandId)
+        public IDataResult<List<CarDetailDto>> GetCarsBySelect(int brandId, int colorId)
         {
-            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(c => c.BrandId == brandId));
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(c => c.ColorId == colorId & c.BrandId == brandId));
         }
 
-        public IDataResult<List<CarDetailDto>> GetCarsDetailsByColor(int colorId)
-        {
-            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(c => c.ColorId == colorId));
+      
 
+        //public IDataResult<List<CarDetailDto>> GetCarsDetails(FilterDto filterDto)
+        //{
+        //    Expression propertyExp, someValue, containsMethodExp, combinedExp;
+        //    Expression<Func<Car, bool>> exp = c => true, oldExp;
+        //    MethodInfo method;
+        //    var parameterExp = Expression.Parameter(typeof(Car), "type");
+        //    foreach (PropertyInfo propertyInfo in filterDto.GetType().GetProperties())
+        //    {
+        //        if (propertyInfo.GetValue(filterDto, null) != null)
+        //        {
+        //            oldExp = exp;
+        //            propertyExp = Expression.Property(parameterExp, propertyInfo.Name);
+        //            method = typeof(int).GetMethod("Equals", new[] { typeof(int) });
+        //            someValue = Expression.Constant(filterDto.GetType().GetProperty(propertyInfo.Name).GetValue(filterDto, null), typeof(int));
+        //            containsMethodExp = Expression.Call(propertyExp, method, someValue);
+        //            exp = Expression.Lambda<Func<Car, bool>>(containsMethodExp, parameterExp);
+        //            combinedExp = Expression.AndAlso(exp.Body, oldExp.Body);
+        //            exp = Expression.Lambda<Func<Car, bool>>(combinedExp, exp.Parameters[0]);
+        //        }
+        //    }
+        //    return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(exp));
+        //}
+
+        public IDataResult<List<CarDetailDto>> GetCarsByBrandId(int brandId)
+        {
+            List<CarDetailDto> carDetails = _carDal.GetCarDetails(p => p.BrandId == brandId);
+            if (carDetails == null)
+            {
+                return new ErrorDataResult<List<CarDetailDto>>(Messages.GetErrorCarMessage);
+            }
+            else
+            {
+                return new SuccessDataResult<List<CarDetailDto>>(carDetails, Messages.GetErrorCarMessage);
+            }
+        }
+
+        public IDataResult<List<CarDetailDto>> GetCarsByColorId(int colorId)
+        {
+            List<CarDetailDto> carDetails = _carDal.GetCarDetails(p => p.ColorId == colorId);
+            if (carDetails == null)
+            {
+                return new ErrorDataResult<List<CarDetailDto>>();
+            }
+            else
+            {
+                return new SuccessDataResult<List<CarDetailDto>>(carDetails);
+            }
         }
 
         [SecuredOperation("car.add,admin")]

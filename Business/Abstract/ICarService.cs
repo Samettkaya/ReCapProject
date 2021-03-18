@@ -3,6 +3,7 @@ using Entities.Concrete;
 using Entities.DTOs;
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace Business.Abstract
@@ -14,15 +15,16 @@ namespace Business.Abstract
         IResult Delete(Car car);
         IDataResult<List<Car>> GetAll();
         IDataResult<Car> GetById(int carId);
-        IDataResult<List<Car>> GetAllByColorId(int colorId);
-        IDataResult<List<Car>> GetAllByBrandId(int brandId);
         IDataResult<List<Car>> GetByDailyPrice(decimal min, decimal max);
         IDataResult<List<Car>> GetByModelYear(string year);
-        IDataResult<List<CarDetailDto>> GetAllCarDetails();
-        IDataResult<List<CarDetailDto>> GetCarsDetailsByBrand(int brandId);
-        IDataResult<List<CarDetailDto>> GetCarsDetailsByColor(int colorId);
-        IDataResult<List<CarDetailDto>> GetCarsDetails(int colorId, int brandId);
-        IDataResult<List<CarDetailDto>> GetCarDetails(int carId);
+        IDataResult<List<CarDetailDto>> GetCarsByBrandId(int brandId);
+        IDataResult<List<CarDetailDto>> GetCarsByColorId(int colorId);
+        //IDataResult<List<CarDetailDto>> GetCarsDetails(FilterDto filterDto);
+        IDataResult<List<CarDetailDto>> GetCarDetails(Expression<Func<Car, bool>> filter = null);
+
+        IResult AddTransactionalTest(Car car);
+        IDataResult<List<CarDetailDto>> GetCarsBySelect(int brandId, int colorId);
+        IDataResult<List<CarDetailDto>> GetCarDetail(int carId);
 
 
 
