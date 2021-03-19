@@ -22,7 +22,7 @@ namespace Core.Helpers
             string imagePath;
             using (FileStream fileStream = File.Create(path + "\\" + newGuıd))
             {
-                file.CopyToAsync(fileStream);
+                file.CopyTo(fileStream);
                 imagePath = path + "\\" + newGuıd;
                 fileStream.Flush();
             }
