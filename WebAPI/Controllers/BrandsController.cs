@@ -26,7 +26,7 @@ namespace WebAPI.Controllers
 
         public IActionResult GetAll()
         {
-            Thread.Sleep(millisecondsTimeout: 5000);
+            Thread.Sleep(millisecondsTimeout: 1000);
 
             var result = _brandService.GetAll();
             if (result.Success)

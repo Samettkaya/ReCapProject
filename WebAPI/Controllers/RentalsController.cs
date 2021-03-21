@@ -27,31 +27,47 @@ namespace WebAPI.Controllers
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
-            Thread.Sleep(millisecondsTimeout: 5000);
+            Thread.Sleep(millisecondsTimeout: 1000);
             var result = _rentalService.GetAll();
             if (result.Success)
             {
-                return Ok(result.Data);
+                return Ok(result);
             }
-            return BadRequest(result.Message);
+            return BadRequest(result);
+        }
+
+        [HttpGet("getbyıd")]
+        public ActionResult GetById(int carId)
+        {
+            var result = _rentalService.Get(carId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            else
+            {
+                return BadRequest(result);
+            }
+             
+           
         }
 
         [HttpGet("getrentaldto")]
         public IActionResult GetRentalDetailsDto(int carId)
         {
-            Thread.Sleep(millisecondsTimeout: 5000);
+            Thread.Sleep(millisecondsTimeout: 1000);
             var result = _rentalService.GetRentalDetailsDto(carId);
             if (result.Success)
             {
-                return Ok(result.Data);
+                return Ok(result);
             }
-            return BadRequest(result.Message);
+            return BadRequest(result);
         }
 
         [HttpGet("getallrentaldto")]
         public ActionResult GetAllDeliveredRentalDetails()
         {
-            Thread.Sleep(millisecondsTimeout: 5000);
+            Thread.Sleep(millisecondsTimeout: 1000);
             var result = _rentalService.GetAllRentalDetailsDto();
             if (result.Success)
                 return Ok(result);

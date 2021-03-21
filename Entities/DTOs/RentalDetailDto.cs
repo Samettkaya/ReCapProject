@@ -13,7 +13,6 @@ namespace Entities.DTOs
         public string BrandName { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string UserName { get; set; }
         public string CompanyName { get; set; }
         public string CarDesctiption { get; set; }
         public DateTime RentDate { get; set; }

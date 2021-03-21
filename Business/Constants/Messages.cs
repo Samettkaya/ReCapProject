@@ -46,6 +46,8 @@ namespace Business.Constants
         public static string RentalDelete = "Kiralama işlemi başarıyla silindi";
         public static string RentalUpdate = "Kiralama işlemi başarıyla güncellendi";
         public static string RentalListed = "Kiralanan arabalar başarıyla listelendi";
+        public static string GetErrorRentalMessage = "Araç kiralama işlemi bilgileri getirilemedi.";
+        public static string GetSuccessRentalMessage = "Araç kiralama işlemi bilgileri getirildi.";
 
         // CarImage Messages
         //CarImage
@@ -67,8 +69,6 @@ namespace Business.Constants
 
         public static string GetSuccessCustomerMessage = "Müşteri bilgileri getirildi";
 
-        public static List<RentalDetailDto> GetErrorRentalMessage { get; internal set; }
-        public static string GetSuccessRentalMessage { get; internal set; }
         public static string GetErrorCarMessage = "Araç bilgisi / bilgileri getirilemedi.";
     }
 }

@@ -54,6 +54,8 @@ namespace Business.Concrete
             return new SuccessResult(Messages.RentalDelete);
         }
 
+   
+
         public IDataResult<List<Rental>> GetAll()
         {
             return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll(),Messages.RentalListed);
@@ -67,10 +69,44 @@ namespace Business.Concrete
             else
                 return new ErrorDataResult<List<RentalDetailDto>>(Messages.GetErrorRentalMessage);
         }
-         
+
+        public IDataResult<Rental> Get(int carId)
+        {
+            Rental rental = _rentalDal.Get(p => p.CarId == carId);
+            if (rental == null)
+            {
+                return new ErrorDataResult<Rental>(Messages.GetErrorRentalMessage);
+            }
+            else
+            {
+                return new SuccessDataResult<Rental>(rental, Messages.GetSuccessRentalMessage);
+            }
+        }
+
         public IDataResult<List<RentalDetailDto>> GetRentalDetailsDto(int carId)
         {
             return new SuccessDataResult<List<RentalDetailDto>>(_rentalDal.GetRentalDetails(r => r.CarId == carId));
+        }
+
+        public IResult IsDelivered(Rental rental)
+        {
+            var result = this.GetAllByCarId(rental.CarId).Data.LastOrDefault();
+            if (result == null || result.ReturnDate != default)
+            {
+                return new SuccessResult();
+            }
+               
+            return new ErrorResult();
+        }
+
+        public IResult IsRentable(Rental rental)
+        {
+            var result = this.GetAllByCarId(rental.CarId).Data.LastOrDefault();
+            if (IsDelivered(rental).Success || (rental.RentDate > result.ReturnDate && rental.RentDate >= DateTime.Now))
+            {
+                return new SuccessResult();
+            }
+            return new ErrorResult();
         }
 
         [ValidationAspect(typeof(RentalValidator))]
@@ -92,6 +128,11 @@ namespace Business.Concrete
             updatedRental.ReturnDate = DateTime.Now;
             _rentalDal.Update(updatedRental);
             return new SuccessResult();
+        }
+
+        public IDataResult<List<Rental>> GetAllByCarId(int carId)
+        {
+            return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll(r => r.CarId == carId));
         }
     }
 }
