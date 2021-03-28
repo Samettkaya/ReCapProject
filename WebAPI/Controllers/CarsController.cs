@@ -88,7 +88,7 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpPost("updated")]
+        [HttpPost("update")]
         public IActionResult Update(Car car)
         {
             var result = _carService.Update(car);
@@ -158,6 +158,21 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
+        [HttpGet("getallcardetail")]
+        public IActionResult GetAllCarDetail()
+        {
+            Thread.Sleep(1000);
+            var result = _carService.GetAllCarDetail();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result);
+        }
+
+
+
         [HttpGet("getcardetail")]
         public IActionResult GetCarDetail(int carId)
         {
@@ -170,6 +185,7 @@ namespace WebAPI.Controllers
 
             return BadRequest(result);
         }
+
         //[HttpGet("getcarsdetails")]
         //public IActionResult GetCarsDetails([FromQuery] FilterDto filterDto)
         //{

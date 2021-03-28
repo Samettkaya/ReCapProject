@@ -20,8 +20,7 @@ namespace DataAccess.Concrete.EntityFramework
                      from rental in filter == null ? context.Rentals : context.Rentals.Where(filter)
                      join customer in context.Customers
                          on rental.CustomerId equals customer.CustomerId
-                     join user in context.Users
-                          on customer.UserId equals user.UserId
+                   
                      join car in context.Cars
                           on rental.CarId equals car.CarId
                      join brand in context.Brands
@@ -38,8 +37,6 @@ namespace DataAccess.Concrete.EntityFramework
                          ColorName = color.ColorName,
                          CompanyName = customer.CompanyName,
                          DailyPrice = car.DailyPrice,
-                         FirstName = user.FirstName,
-                         LastName = user.LastName,
                          ModelYear = car.ModelYear,
                          CarName=car.CarName
                      };

@@ -19,8 +19,9 @@ namespace Business.Abstract
         IDataResult<List<Car>> GetByModelYear(string year);
         IDataResult<List<CarDetailDto>> GetCarsByBrandId(int brandId);
         IDataResult<List<CarDetailDto>> GetCarsByColorId(int colorId);
-        //IDataResult<List<CarDetailDto>> GetCarsDetails(FilterDto filterDto);
+      
         IDataResult<List<CarDetailDto>> GetCarDetails(Expression<Func<Car, bool>> filter = null);
+        IDataResult<List<CarDetailsDto>> GetAllCarDetail();
 
         IResult AddTransactionalTest(Car car);
         IDataResult<List<CarDetailDto>> GetCarsBySelect(int brandId, int colorId);

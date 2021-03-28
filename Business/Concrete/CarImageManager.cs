@@ -37,7 +37,7 @@ namespace Business.Concrete
             carImage.ImagePath = FileHelper.Add(file);
             carImage.Date = DateTime.Now;
             _carImageDal.Add(carImage);
-            return new SuccessResult();
+            return new SuccessResult(Messages.CarImageAdded);
         }
 
         public IResult Delete(CarImage carImage)
@@ -65,7 +65,7 @@ namespace Business.Concrete
 
         public IDataResult<CarImage> GetById(int id)
         {
-            return new SuccessDataResult<CarImage>(_carImageDal.Get(c => c.ImageId == id));
+            return new SuccessDataResult<CarImage>(_carImageDal.Get(c => c.ImageId == id),Messages.CarImageListed);
         }
 
         public IResult Update(IFormFile file, CarImage carImage)
@@ -80,7 +80,7 @@ namespace Business.Concrete
             carImage.Date = DateTime.Now;
             string OldPath = GetById(carImage.ImageId).Data.ImagePath;
             _carImageDal.Update(carImage);
-            return new SuccessResult();
+            return new SuccessResult(Messages.CarImageUpdate);
         }
         private IResult CheckIfImageLimitExpired(int carId)
         {
@@ -100,7 +100,7 @@ namespace Business.Concrete
 
         private List<CarImage> CheckIfCarHaveNoImage(int carId)
         {
-            string path = Directory.GetCurrentDirectory() + @"\wwwroot\Images\default.";
+            string path = Directory.GetCurrentDirectory() + @"\wwwroot\Images\default.jpg";
             var result = _carImageDal.GetAll(c => c.CarId == carId);
             if (!result.Any())
                 return new List<CarImage> { new CarImage { CarId = carId, ImagePath = path } };

@@ -166,5 +166,10 @@ namespace Business.Concrete
                 return new ErrorResult(Messages.CarPriceInvalid);
             }
         }
+
+        public IDataResult<List<CarDetailsDto>> GetAllCarDetail()
+        {
+            return new SuccessDataResult<List<CarDetailsDto>>(_carDal.GetCarDetail());
+        }
     }
 }

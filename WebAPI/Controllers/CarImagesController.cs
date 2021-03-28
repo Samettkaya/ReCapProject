@@ -38,6 +38,20 @@ namespace WebAPI.Controllers
             return BadRequest(result.Message);
         }
 
+        //[HttpGet("getfilebyid")]
+        //public IActionResult GetFileById(int id)
+        //{
+        //    var result = _carImageService.GetById(id);
+
+        //    if (result.Success)
+        //    {
+        //        var b = System.IO.File.ReadAllBytes(result.Data.ImagePath);
+        //        return File(b, "image/jpeg");
+        //    }
+
+        //    return BadRequest(result);
+        //}
+
         [HttpGet("getimagesbycarid")]
         public IActionResult GetImagesById(int carId)
         {

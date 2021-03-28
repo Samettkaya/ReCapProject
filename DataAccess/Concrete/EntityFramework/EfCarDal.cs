@@ -13,27 +13,28 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfCarDal : EfEntityRepositoryBase<Car, Context>, ICarDal
     {
-        //public CarDetailDto GetCarDetail(int carId)
-        //{
-        //    //using (Context context = new Context())
-        //    //{
-        //    //    var result = from p in context.Cars.Where(p => p.CarId == carId)
-        //    //                 join c in context.Colors
-        //    //                 on p.ColorId equals c.ColorId
-        //    //                 join d in context.Brands
-        //    //                 on p.BrandId equals d.BrandId
-        //    //                 select new CarDetailDto
-        //    //                 {
-        //    //                     BrandName = d.BrandName,
-        //    //                     ColorName = c.ColorName,
-        //    //                     DailyPrice = p.DailyPrice,
-        //    //                     Description = p.Description,
-        //    //                     ModelYear = p.ModelYear,
-        //    //                     CarId = p.CarId
-        //    //                 };
-        //    //    return result.SingleOrDefault();
-        //    //}
-        //}
+        public List<CarDetailsDto> GetCarDetail(Expression<Func<Car, bool>> filter = null)
+        {
+            using (Context context = new Context())
+            {
+                var result = from ca in filter is null ? context.Cars : context.Cars.Where(filter)
+                             join c in context.Colors
+                             on ca.ColorId equals c.ColorId
+                             join d in context.Brands
+                             on ca.BrandId equals d.BrandId
+                             select new CarDetailsDto
+                             {
+                                 BrandName = d.BrandName,
+                                 ColorName = c.ColorName,
+                                 DailyPrice = ca.DailyPrice,
+                                 Description = ca.Description,
+                                 ModelYear = ca.ModelYear,
+                                 CarId = ca.CarId,
+                                 CarName=ca.CarName
+                             };
+                return result.ToList();
+            }
+        }
 
         public List<CarDetailDto> GetCarDetails(Expression<Func<Car, bool>> filter = null)
         {
