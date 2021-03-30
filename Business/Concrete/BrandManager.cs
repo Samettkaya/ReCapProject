@@ -59,17 +59,11 @@ namespace Business.Concrete
         [ValidationAspect(typeof(BrandValidator))]
         public IResult  Update(Brand brand)
         {
-            //if (brand.BrandName.Length > 2)
-            //{
+           
                 _brandDal.Update(brand);
                
                 return new SuccessResult(Messages.BrandUpdate);
-            //}
-            //else
-            //{
-               
-            //    return new ErrorResult(Messages.BrandNameInvalid);
-            //}
+           
 
         }
     }

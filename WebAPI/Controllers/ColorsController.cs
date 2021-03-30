@@ -34,11 +34,11 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("getbyıd")]
+        [HttpGet("getbyid")]
 
         public IActionResult GetById(int colorId)
         {
-            Thread.Sleep(millisecondsTimeout: 5000);
+     
             var result = _colorService.GetById(colorId);
             if (result.Success)
             {

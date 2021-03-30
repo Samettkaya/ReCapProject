@@ -80,7 +80,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Car>> GetByModelYear(string year)
         {
-            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.ModelYear.Contains(year) == true));
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll());
         }
 
         public IDataResult<List<CarDetailDto>> GetCarDetail(int carId)
@@ -149,7 +149,7 @@ namespace Business.Concrete
             }
         }
 
-        [SecuredOperation("car.add,admin")]
+        //[SecuredOperation("car.add,admin")]
         [CacheRemoveAspect("ICarService.Update")]
         [ValidationAspect(typeof(CarValidator))]
         public IResult Update(Car car)
