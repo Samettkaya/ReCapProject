@@ -28,6 +28,7 @@ namespace WebAPI
         {
 
             services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson();
             //services.AddSingleton<IUserService,UserManager>();
             //services.AddSingleton<ICarService, CarManager>();
             //services.AddSingleton<IBrandService, BrandManager>();

@@ -65,7 +65,7 @@ namespace Business.Constants
         public static string UserRegistered = "Kullanıcı başarıyla kaydedildi";
         public static string SuccessfulLogin = "Sisteme başarıyla giriş yapıldı";
         public static string UserAlreadyExists = "Bu kullanıcı zaten mevcut";
-        public static string AccessTokenCreated = "Access token başarıyla oluşturuldu";
+        public static string AccessTokenCreated = "Giriş Yapıldı";
 
         public static string GetSuccessCustomerMessage = "Müşteri bilgileri getirildi";
 

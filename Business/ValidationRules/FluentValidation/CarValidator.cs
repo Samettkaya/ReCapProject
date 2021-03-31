@@ -13,8 +13,8 @@ namespace Business.ValidationRules.FluentValidation
         {
            
             RuleFor(c => c.CarName).MinimumLength(2).WithMessage("Araç adı en az 2 karekter den büyük olmalıdır.");
-            RuleFor(c => c.DailyPrice).GreaterThan(0).WithMessage("Araç günlük fiyatı 0'dan büyük olmalı.");
-            RuleFor(c => c.ModelYear).GreaterThan(0).WithMessage("Araç model yılı boş bırakılamaz.");
+            RuleFor(c => c.DailyPrice).GreaterThan(0).WithMessage("Günlük fiyatı 0'dan büyük olmalı.");
+            RuleFor(c => c.ModelYear).GreaterThan(0).WithMessage("Model yılı boş bırakılamaz.");
             RuleFor(c => c.Description).MinimumLength(10).WithMessage("Araç açıklaması en az 10 karekter uzunluğun da olmalı. ");
             
         }
