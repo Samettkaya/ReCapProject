@@ -69,6 +69,8 @@ namespace Business.Constants
 
         public static string GetSuccessCustomerMessage = "Müşteri bilgileri getirildi";
 
-        public static string GetErrorCarMessage = "Araç bilgisi / bilgileri getirilemedi.";
+        public static string GetErrorCarMessage = "Araç bilgisi getirilemedi.";
+
+        public static string PasswordChanged = "Şifre değiştirildi";
     }
 }

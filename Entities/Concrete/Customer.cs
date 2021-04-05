@@ -11,5 +11,7 @@ namespace Entities.Concrete
         public int CustomerId { get; set; }
         public int UserId { get; set; }
         public string CompanyName { get; set; }
+        public string Address { get; set; }
+        public int FindeksScore = 500;
     }
 }

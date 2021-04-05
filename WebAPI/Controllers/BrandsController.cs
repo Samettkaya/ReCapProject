@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -48,7 +49,7 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-
+        [SecuredOperation("brand.add,admin")]
         [HttpPost("add")]
         public IActionResult Add(Brand brand)
         {
@@ -59,7 +60,7 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
-
+        [SecuredOperation("brand.update,admin")]
         [HttpPost("update")]
         public IActionResult Update(Brand brand)
         {
@@ -71,7 +72,7 @@ namespace WebAPI.Controllers
             return BadRequest(result);
 
         }
-
+        [SecuredOperation("brand.delete,admin")]
         [HttpPost("delete")]
         public IActionResult Delete(Brand brand)
         {

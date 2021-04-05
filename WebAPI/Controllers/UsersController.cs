@@ -37,9 +37,9 @@ namespace WebAPI.Controllers
             var result = _userService.GetById(userId);
             if (result.Success)
             {
-                return Ok(result.Data);
+                return Ok(result);
             }
-            return BadRequest(result.Message);
+            return BadRequest(result);
         }
 
         [HttpPost("add")]
@@ -59,9 +59,9 @@ namespace WebAPI.Controllers
             var result = _userService.Update(user);
             if (result.Success)
             {
-                return Ok(result.Message);
+                return Ok(result);
             }
-            return BadRequest(result.Message);
+            return BadRequest(result);
 
         }
 
