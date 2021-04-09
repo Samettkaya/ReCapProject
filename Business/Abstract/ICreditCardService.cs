@@ -16,5 +16,7 @@ namespace Business.Abstract
         IDataResult<CreditCard> GetById(int id);
         IDataResult<List<CreditCard>> GetByCardNumber(string cardNumber);
         IResult IsCardExist(CreditCard creditCard);
+
+        IDataResult<List<CreditCard>> GetByCustomerId(int customerId);
     }
 }

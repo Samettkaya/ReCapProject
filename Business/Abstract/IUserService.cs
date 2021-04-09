@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using core.Entities.Concrete;
+using Entities.DTOs;
 
 namespace Business.Abstract
 {
@@ -15,5 +16,6 @@ namespace Business.Abstract
         IDataResult<User> GetById(int userId);
         List<OperationClaim> GetClaims(User user);
         User GetByMail(string email);
+        IDataResult<UserDetailDto> GetUserDetailByEmail(string email);
     }
 }

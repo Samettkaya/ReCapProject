@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.Constants;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
 using DataAccess.Abstract;
@@ -21,13 +22,13 @@ namespace Business.Concrete
         public IResult Add(CreditCard creditCard)
         {
             _creditCardDal.Add(creditCard);
-            return new SuccessResult();
+            return new SuccessResult(Messages.CardAdded);
         }
 
         public IResult Delete(CreditCard creditCard)
         {
             _creditCardDal.Delete(creditCard);
-            return new SuccessResult();
+            return new SuccessResult(Messages.CardDelete);
         }
 
         public IDataResult<List<CreditCard>> GetAll()
@@ -38,6 +39,11 @@ namespace Business.Concrete
         public IDataResult<List<CreditCard>> GetByCardNumber(string cardNumber)
         {
             return new SuccessDataResult<List<CreditCard>>(_creditCardDal.GetAll(c => c.CardNumber == cardNumber));
+        }
+
+        public IDataResult<List<CreditCard>> GetByCustomerId(int customerId)
+        {
+            return new SuccessDataResult<List<CreditCard>>(_creditCardDal.GetAll(c => c.CustomerId == customerId));
         }
 
         public IDataResult<CreditCard> GetById(int id)

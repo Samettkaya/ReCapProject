@@ -96,6 +96,16 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
+        [HttpGet("getbycustomer")]
+        public IActionResult GetByCustomerId(int customerId)
+        {
+            var result = _creditCardService.GetByCustomerId(customerId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
 
     }
 }

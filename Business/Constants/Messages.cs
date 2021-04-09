@@ -72,5 +72,17 @@ namespace Business.Constants
         public static string GetErrorCarMessage = "Araç bilgisi getirilemedi.";
 
         public static string PasswordChanged = "Şifre değiştirildi";
+
+        public static string PaymentSuccessful = "Ödeme tamamlandı";
+
+        public static string CardAdded ="Kart Eklendi";
+
+        public static string CardDelete = "Kartınız Silindi";
+
+        public static string FindexScoreAdded = "Findeks skoru eklendi.";
+        public static string FindexScoreDeleted = "Findeks skoru silindi.";
+        public static string FindexScoreListed  = "Findeks skorları listelendi.";
+        public static string FindexScoreNotFound = "Findeks skoru bulunamadı.";
+        public static string FindexScoreUpdated = "Findeks skoru güncellendi.";
     }
 }

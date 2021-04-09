@@ -9,15 +9,18 @@ using core.Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Entities.DTOs;
 
 namespace Business.Concrete
 {
     public class UserManager : IUserService
     {
         IUserDal _userDal;
+
         public UserManager(IUserDal userDal)
         {
             _userDal = userDal;
+
         }
 
         [ValidationAspect(typeof(UserValidator))]
@@ -59,6 +62,12 @@ namespace Business.Concrete
         public List<OperationClaim> GetClaims(User user)
         {
             return _userDal.GetClaims(user);
+        }
+
+        public IDataResult<UserDetailDto> GetUserDetailByEmail(string email)
+        {
+            var result = _userDal.Get(u => u.Email == email);
+            return new SuccessDataResult<UserDetailDto>(_userDal.GetUserDetails(u => u.UserId == result.UserId));
         }
     }
 }

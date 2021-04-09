@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using Entities.DTOs;
+using System.Linq.Expressions;
 
 namespace DataAccess.Concrete.EntityFramework
 {
@@ -21,6 +23,29 @@ namespace DataAccess.Concrete.EntityFramework
                              select new OperationClaim { Id = operationClaim.Id, Name = operationClaim.Name };
                 return result.ToList();
 
+            }
+        }
+
+        public UserDetailDto GetUserDetails(Expression<Func<UserDetailDto, bool>> filter)
+        {
+            using (var context = new Context())
+            {
+                var result = from user in context.Users
+                             join customer in context.Customers
+                             on user.UserId equals customer.UserId
+                             join findeks in context.FindeksScores
+                             on customer.CustomerId equals findeks.CustomerId
+                             select new UserDetailDto
+                             {
+                                 UserId = user.UserId,
+                                 CustomerId = customer.CustomerId,
+                                 FirstName = user.FirstName,
+                                 LastName = user.LastName,
+                                 Email = user.Email,
+                                 CompanyName = customer.CompanyName,
+                                 FindexScore = findeks.Score
+                             };
+                return result.SingleOrDefault(filter);
             }
         }
     }
