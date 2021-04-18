@@ -1,29 +1,34 @@
-﻿CREATE TABLE Cars(
-	CarID int PRIMARY KEY IDENTITY(1,1),
-	CarName nvarchar(50),
-	BrandID int,
-	ColorID int,
-	ModelYear nvarchar(25),
-	DailyPrice decimal,
-	Descriptions nvarchar(25),
-	FOREIGN KEY (BrandID) REFERENCES Colors(ColorID),
-	FOREIGN KEY (ColorID) REFERENCES Brands(BrandID)
+CREATE TABLE [dbo].[Cars] (
+    [CarID]       INT           IDENTITY (1, 1) NOT NULL,
+    [CarName]     NVARCHAR (50) NULL,
+    [BrandID]     INT           NULL,
+    [ColorID]     INT           NULL,
+    [ModelYear]   INT           NULL,
+    [DailyPrice]  DECIMAL (18)  NULL,
+    [Description] VARCHAR (100) NULL,
+    [FindexScore] INT           NULL,
+    PRIMARY KEY CLUSTERED ([CarID] ASC),
+    FOREIGN KEY ([ColorID]) REFERENCES [dbo].[Colors] ([ColorID]),
+    FOREIGN KEY ([BrandID]) REFERENCES [dbo].[Brands] ([BrandID])
 )
 
-CREATE TABLE Colors(
-	ColorID int PRIMARY KEY IDENTITY(1,1),
-	ColorName nvarchar(25),
-)
+7
+CREATE TABLE [dbo].[Colors] (
+    [ColorID]   INT           IDENTITY (1, 1) NOT NULL,
+    [ColorName] NVARCHAR (25) NULL,
+    PRIMARY KEY CLUSTERED ([ColorID] ASC)
+);
 
-CREATE TABLE Brands(
-	BrandID int PRIMARY KEY IDENTITY(1,1),
-	BrandName nvarchar(25),
-)
+CREATE TABLE [dbo].[Brands] (
+    [BrandID]   INT           IDENTITY (1, 1) NOT NULL,
+    [BrandName] NVARCHAR (25) NULL,
+    PRIMARY KEY CLUSTERED ([BrandID] ASC)
+);
 
 
 CREATE TABLE [dbo].[Customers] (
     [CustomerId]  INT           IDENTITY (1, 1) NOT NULL,
-    [UserId]      INT           NULL,
+    [UserId]      INT           NOT NULL,
     [CompanyName] NVARCHAR (50) NULL,
     PRIMARY KEY CLUSTERED ([CustomerId] ASC),
     FOREIGN KEY ([UserId]) REFERENCES [dbo].[Users] ([UserID])
@@ -31,12 +36,60 @@ CREATE TABLE [dbo].[Customers] (
 
 
 CREATE TABLE [dbo].[Users] (
-    [UserID]    INT           IDENTITY (1, 1) NOT NULL,
-    [FirstName] NVARCHAR (50) NULL,
-    [LastName]  NVARCHAR (50) NULL,
-    [Email]     NVARCHAR (50) NULL,
-    [Password]  NVARCHAR (25) NULL,
+    [UserID]       INT             IDENTITY (1, 1) NOT NULL,
+    [FirstName]    VARCHAR (50)    NOT NULL,
+    [LastName]     VARCHAR (50)    NOT NULL,
+    [Email]        VARCHAR (50)    NOT NULL,
+    [PasswordHash] VARBINARY (500) NOT NULL,
+    [PasswordSalt] VARBINARY (500) NOT NULL,
+    [Status]       BIT             NOT NULL,
     PRIMARY KEY CLUSTERED ([UserID] ASC)
+);
+
+CREATE TABLE [dbo].[UserOperationClaims] (
+    [Id]               INT IDENTITY (1, 1) NOT NULL,
+    [UserId]           INT NOT NULL,
+    [OperationClaimId] INT NOT NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_UserOperationClaims_Users] FOREIGN KEY ([UserId]) REFERENCES [dbo].[Users] ([UserID]),
+    FOREIGN KEY ([OperationClaimId]) REFERENCES [dbo].[OperationClaims] ([Id])
+);
+
+
+CREATE TABLE [dbo].[OperationClaims] (
+    [Id]   INT           IDENTITY (1, 1) NOT NULL,
+    [Name] VARCHAR (250) NOT NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+
+CREATE TABLE [dbo].[Payments] (
+    [Id]          INT          NOT NULL,
+    [PaymentDate] DATETIME     NULL,
+    [Total]       DECIMAL (18) NULL,
+    [CustomerId]  INT          NULL,
+    [CardId]      INT          NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_Payments_Customers] FOREIGN KEY ([CustomerId]) REFERENCES [dbo].[Customers] ([CustomerId]) ON DELETE CASCADE,
+    CONSTRAINT [FK_Payments_Cars] FOREIGN KEY ([CardId]) REFERENCES [dbo].[Cars] ([CarID]) ON DELETE CASCADE
+);
+
+CREATE TABLE [dbo].[CreditCards] (
+    [Id]             INT          IDENTITY (1, 1) NOT NULL,
+    [UserId]         INT          NOT NULL,
+    [CardName]       VARCHAR (50) NOT NULL,
+    [CardNumber]     VARCHAR (50) NOT NULL,
+    [CardCvc]        VARCHAR (50) NOT NULL,
+    [CardExpiration] VARCHAR (50) NOT NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_CreditCards_Users] FOREIGN KEY ([UserId]) REFERENCES [dbo].[Users] ([UserID]) ON DELETE CASCADE
+);
+
+CREATE TABLE [dbo].[Findeks] (
+    [FindexId]   INT IDENTITY (1, 1) NOT NULL,
+    [CustomerId] INT NOT NULL,
+    [Score]      INT NOT NULL,
+    PRIMARY KEY CLUSTERED ([FindexId] ASC),
+    FOREIGN KEY ([CustomerId]) REFERENCES [dbo].[Customers] ([CustomerId])
 );
 
 
@@ -61,60 +114,7 @@ CREATE TABLE [dbo].[CarImages] (
 );
 
 
-INSERT INTO Cars(BrandID,ColorID,ModelYear,DailyPrice,Descriptions)
-VALUES
-	('1','2','2012','100','Manuel Benzin'),
-	('1','3','2015','150','Otomatik Dizel'),
-	('2','1','2017','200','Otomatik Hybrid'),
-	('3','3','2014','125','Manuel Dizel');
-
-INSERT INTO Colors(ColorName)
-VALUES
-	('Siyah'),
-	('Gri'),
-	('Kırmızı'),
-	('Sarı'),
-	('Beyaz'),
-	('Mavi'),
-	('Cyan'),
-	('Gümüş');
 
 
-INSERT INTO Brands(BrandName)
-VALUES
-	('Bmw'),
-	('Renault'),
-	('Mercedes'),
-	('Toyota'),
-	('Vosvogen');
-	
-INSERT INTO Rentals(CarId,CustomerId,RentDate,ReturnDate) VALUES 
-(1,1,'2020-12-29 15:00:01','2021-01-05 16:16:05'),
-(2,2,'2020-12-30 10:34:09',null),
-(3,3,'2020-01-14 14:39:23','2020-01-20 12:02:48'),
-(4,4,'2015-11-05 17:45:53',null),
-(5,5,'2021-01-12 11:12:38','2021-01-16 18:01:41');
 
 
-INSERT INTO Customers(UserId,CompanyName) VALUES 
-	(1,'Türkiye Finans Katılım Bankası'),
-	(2,'İş Bankası'),
-	(3,'Çiçek Sepeti'),
-	(4,'Yemek Sepeti'),
-	(5,'Getir');
-
-INSERT INTO Users(FirstName,LastName,Email,Password) VALUES 
-	('Samet','Kaya','kaya67380@gmail.com','123samet'),
-	('Mazlum','Arslan','mazlumarslan12@gmail.com','123mazlum'),
-	('Serdar','Yazıcı','yazıcıserdar57@gmail.com','123serdar'),
-	('Can','Güneri','cankuneri34@gmail.com','123Guneri'),
-	('Berkant','Yılmaz','berkantyilmaz3484@gmail.com','123berkant');
-
-CREATE TABLE [dbo].[CarImages] (
-    [ImageId]   INT           IDENTITY (1, 1) NOT NULL,
-    [CarId]     INT           NOT NULL,
-    [ImagePath] VARCHAR (MAX) NOT NULL,
-    [Date]      DATE          NOT NULL,
-    CONSTRAINT [PK_CarImages] PRIMARY KEY CLUSTERED ([ImageId] ASC),
-    CONSTRAINT [FK_CarImages_Cars] FOREIGN KEY ([CarId]) REFERENCES [dbo].[Cars] ([CarID]) ON DELETE CASCADE
-);
