@@ -15,7 +15,7 @@ namespace ConsoleUI
             ColorManager colorManager = new ColorManager(new EfColorDal());
             UserManager userManager = new UserManager(new EfUserDal());
             CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
-            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+           
 
 
             //ColorTest(colorManager);
@@ -24,7 +24,7 @@ namespace ConsoleUI
             UserTest(userManager);
             CustomerTest(customerManager);
 
-            RentalTest(rentalManager);
+           
         }
 
         private static void RentalTest(RentalManager rentalManager)

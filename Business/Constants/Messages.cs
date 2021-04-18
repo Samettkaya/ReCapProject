@@ -48,6 +48,8 @@ namespace Business.Constants
         public static string RentalListed = "Kiralanan arabalar başarıyla listelendi";
         public static string GetErrorRentalMessage = "Araç kiralama işlemi bilgileri getirilemedi.";
         public static string GetSuccessRentalMessage = "Araç kiralama işlemi bilgileri getirildi.";
+        public static string CarDelivered = "Araç teslim edildi";
+        public static string CarAlreadyDelivered = "Araç daha önce teslim edilmiş";
 
         // CarImage Messages
         //CarImage
@@ -68,15 +70,10 @@ namespace Business.Constants
         public static string AccessTokenCreated = "Giriş Yapıldı";
 
         public static string GetSuccessCustomerMessage = "Müşteri bilgileri getirildi";
-
         public static string GetErrorCarMessage = "Araç bilgisi getirilemedi.";
-
         public static string PasswordChanged = "Şifre değiştirildi";
-
         public static string PaymentSuccessful = "Ödeme tamamlandı";
-
         public static string CardAdded ="Kart Eklendi";
-
         public static string CardDelete = "Kartınız Silindi";
 
         public static string FindexScoreAdded = "Findeks skoru eklendi.";
@@ -84,5 +81,8 @@ namespace Business.Constants
         public static string FindexScoreListed  = "Findeks skorları listelendi.";
         public static string FindexScoreNotFound = "Findeks skoru bulunamadı.";
         public static string FindexScoreUpdated = "Findeks skoru güncellendi.";
+        public static string FindeksScoreNotFound = "Findeks skoru bulunamadı.";
+        public static string FindeksScoreInsufficient = "Findeks skoru yetersiz.";
+
     }
 }

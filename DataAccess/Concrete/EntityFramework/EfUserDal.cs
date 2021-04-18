@@ -33,8 +33,8 @@ namespace DataAccess.Concrete.EntityFramework
                 var result = from user in context.Users
                              join customer in context.Customers
                              on user.UserId equals customer.UserId
-                             join findeks in context.FindeksScores
-                             on customer.CustomerId equals findeks.CustomerId
+                             join findex in context.Findeks
+                             on customer.CustomerId equals findex.CustomerId
                              select new UserDetailDto
                              {
                                  UserId = user.UserId,
@@ -43,7 +43,7 @@ namespace DataAccess.Concrete.EntityFramework
                                  LastName = user.LastName,
                                  Email = user.Email,
                                  CompanyName = customer.CompanyName,
-                                 FindexScore = findeks.Score
+                                 FindexScore = findex.Score
                              };
                 return result.SingleOrDefault(filter);
             }

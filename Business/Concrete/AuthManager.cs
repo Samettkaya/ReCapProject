@@ -20,11 +20,13 @@ namespace Business.Concrete
     {
         private IUserService _userService;
         private ITokenHelper _tokenHelper;
+        ICustomerService _customerService;
 
-        public AuthManager(IUserService userService, ITokenHelper tokenHelper)
+        public AuthManager(IUserService userService, ITokenHelper tokenHelper, ICustomerService customerService)
         {
             _userService = userService;
             _tokenHelper = tokenHelper;
+            _customerService = customerService;
         }
 
         [CacheAspect]
@@ -100,5 +102,20 @@ namespace Business.Concrete
             _userService.Update(userToCheck);
             return new SuccessResult(Messages.PasswordChanged);
         }
+
+        public IResult UserDetailUpdate(UserDetailForUpdate userDetailForUpdate)
+        {
+            var user = _userService.GetById(userDetailForUpdate.UserId).Data;
+            var customer = _customerService.GeyById(userDetailForUpdate.CustomerId).Data;
+
+            user.FirstName = userDetailForUpdate.FirstName;
+            user.LastName = userDetailForUpdate.LastName;
+            customer.CompanyName = userDetailForUpdate.CompanyName;
+            _userService.Update(user);
+            _customerService.Update(customer);
+
+            return new SuccessResult(Messages.UserUpdate);
+        }
+
     }
 }

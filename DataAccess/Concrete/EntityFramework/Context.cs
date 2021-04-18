@@ -28,8 +28,7 @@ namespace DataAccess.Concrete.EntityFramework
         public DbSet<CreditCard> CreditCards { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Payment> Payments { get; set; }
-
-        public DbSet<FindexScore> FindeksScores { get; set; }
+        public DbSet<FindexScore> Findeks{ get; set; }
     }
     
 }

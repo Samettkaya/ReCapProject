@@ -30,7 +30,8 @@ namespace DataAccess.Concrete.EntityFramework
                                  Description = ca.Description,
                                  ModelYear = ca.ModelYear,
                                  CarId = ca.CarId,
-                                 CarName=ca.CarName
+                                 CarName=ca.CarName,
+                                 FindexScore=ca.FindexScore
                              };
                 return result.ToList();
             }
@@ -57,8 +58,9 @@ namespace DataAccess.Concrete.EntityFramework
                                  ModelYear = cr.ModelYear,
                                  DailyPrice = cr.DailyPrice,
                                  Description = cr.Description,
+                                 FindexScore = cr.FindexScore,
                                  ImagePath = context.CarImages.Where(x => x.CarId == cr.CarId).FirstOrDefault().ImagePath
-
+                                 
 
                              };
 

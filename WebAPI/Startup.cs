@@ -28,24 +28,8 @@ namespace WebAPI
         {
 
             services.AddControllers();
-            services.AddControllers().AddNewtonsoftJson();
-            //services.AddSingleton<IUserService,UserManager>();
-            //services.AddSingleton<ICarService, CarManager>();
-            //services.AddSingleton<IBrandService, BrandManager>();
-            //services.AddSingleton<IRentalService, RentalManager>();
-            //services.AddSingleton<ICustomerService, CustomerManager>();
-            //services.AddSingleton<IColorService, ColorManager>();
-
-
-
-            //services.AddSingleton<IUserDal, EfUserDal>();
-            //services.AddSingleton<IColorDal, EfColorDal>();
-            //services.AddSingleton<IBrandDal, EfBrandDal>();
-            //services.AddSingleton<ICarDal, EfCarDal>();
-            //services.AddSingleton<IRentalDal,EfRentalDal>();
-            //services.AddSingleton<ICustomerDal, EfCustomerDal>();
-
-            //services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+           
+           
 
             services.AddCors();
 
@@ -88,11 +72,11 @@ namespace WebAPI
             app.UseHttpsRedirection();
 
             app.UseRouting();
-            app.UseStaticFiles();
+          
             app.UseAuthentication();
 
             app.UseAuthorization();
-
+            app.UseStaticFiles();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

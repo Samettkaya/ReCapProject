@@ -30,7 +30,7 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpDelete("delete")]
+        [HttpPost("delete")]
         public IActionResult Delete(CreditCard creditCard)
         {
             var result = _creditCardService.Delete(creditCard);
@@ -96,10 +96,10 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
-        [HttpGet("getbycustomer")]
-        public IActionResult GetByCustomerId(int customerId)
+        [HttpGet("getbyuser")]
+        public IActionResult GetByUserId(int userId)
         {
-            var result = _creditCardService.GetByCustomerId(customerId);
+            var result = _creditCardService.GetByUserId(userId);
             if (result.Success)
             {
                 return Ok(result);
