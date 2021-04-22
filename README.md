@@ -1,22 +1,38 @@
 <h1 align="center">
-Car Rental System - Backend
+Car Rental Project - Backend
   </h1><br>
 <p align="center">
   <img src="https://github.com/Samettkaya/ReCapProject/blob/master/WebAPI/ReadmeImage/Rent-Car.jpg" height="350" width="600"  alt="main">
 </p><br><br>
 
 
+
+
+
+## Kullanılan Teknolojiler
+- .NET
+- ASP.NET for Restful api
+- EntityFramework Core
+- Autofac
+- FluentValidation
+- MsSql
+
+## Teknikler
+- Layered Architecture Design Pattern
+- AOP
+- JWT
+- Autofac dependency resolver
+- IOC
+
+
 ## Database Tables 
 <br>
-
 <p align="center">
   <img src="https://github.com/Samettkaya/ReCapProject/blob/master/WebAPI/ReadmeImage/veri.PNG" height="600" width="100%"  alt="main">
 </p>
 
 
-
-
-## Nuget Packages and Their Versions
+## Nuget Paketleri ve Sürümleri
 - Autofac - Version = v6.1.0
 - Autofac.Extensions.DependencyInjection - Version = v7.1.0
 - Autofac.Extras.DynamicProxy - Version = v6.0.0
