@@ -1,11 +1,17 @@
+<h1 align="center">
+Car Rental System - Backend
+  </h1><br>
+<p align="center">
+  <img src="https://github.com/Samettkaya/ReCapProject/blob/master/WebAPI/ReadmeImage/Rent-Car.jpg" height="350" width="600"  alt="main">
+</p><br><br>
 
-![HomePage](https://github.com/Samettkaya/ReCapProject/blob/master/WebAPI/ReadmeImage/Rent-Car.jpg)
 
-<img align="Center" src="https://github.com/Samettkaya/ReCapProject/blob/master/WebAPI/ReadmeImage/Rent-Car.jpg">
+## Database Tables 
+<br>
 
-## Database Tables
-![HomePage](https://github.com/Samettkaya/ReCapProject/blob/master/WebAPI/ReadmeImage/veri.PNG)
-
+<p align="center">
+  <img src="https://github.com/Samettkaya/ReCapProject/blob/master/WebAPI/ReadmeImage/veri.PNG" height="600" width="100%"  alt="main">
+</p>
 
 
 
